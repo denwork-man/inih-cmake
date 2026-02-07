@@ -1,0 +1,27 @@
+# -------------------------------------------------
+#  pkg-config template – CMake
+#  (for inih, as for INIReader)
+# -------------------------------------------------
+
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+# --------------------  inih  --------------------
+Name: inih
+Description: simple .INI file parser
+Version: @PROJECT_VERSION@
+Libs: -L${libdir} -linih
+Cflags: -I${includedir}
+# -------------------------------------------------
+
+# -----------------  INIReader --------------------
+# (includes only if WITH_INIREADER enabled)
+# CMake will set vars by values from project at generating.
+Name: INIReader
+Description: simple .INI file parser for C++
+Version: @PROJECT_VERSION@
+Libs: -L${libdir} -lINIReader
+Cflags: -I${includedir}
+# -------------------------------------------------
