@@ -4,7 +4,7 @@
 # -------------------------------------------------
 cmake_minimum_required(VERSION 3.20)
 project(inih LANGUAGES C CXX)
-message(STATUS "inih project")
+message(CHECK_START "inih project")
 # ----------------------------------------------------------------------
 # 1. Options (Meson_options.txt)
 # ----------------------------------------------------------------------
@@ -29,6 +29,7 @@ set(INITIAL_MALLOC_SIZE 200 CACHE STRING "initial malloc size in bytes (when usi
 option(ALLOW_REALLOC "allow initial malloc size to grow to max line length" OFF)
 
 option(BUILD_TESTS "build the test suite (noisy)" ON)
+option(ADD_EXAMPLES "Add examples" OFF)
 
 # ----------------------------------------------------------------------
 # 2. Preparing preprocessor's flags
@@ -135,6 +136,8 @@ if(BUILD_TESTS)
     message(STATUS "Build tests -- TRUE")
     enable_testing()
     add_subdirectory(tests)
+else()
+    message(STATUS "Build tests -- FALSE")
 endif()
 
 # ----------------------------------------------------------------------
@@ -176,6 +179,9 @@ if(WITH_INIREADER)
         configure_file(pkg-config.in INIReader.pc @ONLY)
         install(FILES ${CMAKE_CURRENT_BINARY_DIR}/INIReader.pc DESTINATION lib/pkgconfig)
     endif()
-
-    add_subdirectory(examples)
+    if (ADD_EXAMPLES)
+        add_subdirectory(examples)
+    endif()
 endif()
+
+message(CHECK_PASS "DONE")
