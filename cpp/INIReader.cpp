@@ -18,13 +18,15 @@
 using std::string;
 
 INIReader::INIReader(const string& filename)
+    : _error(ini_parse(filename.c_str(), ValueHandler, this))
 {
-    _error = ini_parse(filename.c_str(), ValueHandler, this);
+
 }
 
 INIReader::INIReader(const char *buffer, size_t buffer_size)
+    : _error(ini_parse_string_length(buffer, buffer_size, ValueHandler, this))
 {
-  _error = ini_parse_string_length(buffer, buffer_size, ValueHandler, this);
+
 }
 
 int INIReader::ParseError() const

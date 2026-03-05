@@ -12,13 +12,13 @@ find_program(RUNTEST_EXE NAMES runtest.sh
         NO_DEFAULT_PATH)
 
 if (NOT RUNTEST_EXE)
-    message(STATUS "runtest.sh not found – example tests will be skipped")
+    message(STATUS "runtest.sh not found - example tests will be skipped")
     return()
 endif()
 
 # 2. Sources that each examples needs.
-#    * src_inih – main parser (ini.c)
-#    * src_INIReader – C++ wrapper (cpp/INIReader.cpp)
+#    * src_inih - main parser (ini.c)
+#    * src_INIReader - C++ wrapper (cpp/INIReader.cpp)
 #    Both are declared in the root CMakeLists as target
 #    `inih` and `INIReader`. We will simply refer to them.
 #    If necessary, you can add them directly
@@ -44,16 +44,16 @@ function(add_inih_example ex_name src_cpp extra_args)
 
     # 4.2. Create executable.
     #      It builds:
-    #        * library `inih` (ini.c) – target already exists `inih`
-    #        * library `INIReader` (cpp/INIReader.cpp) – target `INIReader`
+    #        * library `inih` (ini.c) - target already exists `inih`
+    #        * library `INIReader` (cpp/INIReader.cpp) - target `INIReader`
     #        * example source (src_cpp)
     add_executable(example_${ex_name}
             ${src_cpp}
     )
     #  link builded libraries
     target_link_libraries(example_${ex_name}
-            PRIVATE inih          # C‑lib
-            PRIVATE INIReader     # C++‑wrapper
+            PRIVATE inih          # C-lib
+            PRIVATE INIReader     # C++-wrapper
     )
     target_include_directories(example_${ex_name}
             PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..
@@ -62,7 +62,7 @@ function(add_inih_example ex_name src_cpp extra_args)
 
     # 4.3. Adding a test that runs runtest.sh
     #      There are two arguments:
-    #        1) cpptest.txt – the reference file
+    #        1) cpptest.txt - the reference file
     #        2) executable path
     add_test(NAME example_${ex_name}
             COMMAND ${RUNTEST_EXE}

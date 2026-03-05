@@ -9,11 +9,11 @@ message(CHECK_START "inih project")
 # 1. Options (Meson_options.txt)
 # ----------------------------------------------------------------------
 message(STATUS "Options init")
-option(DISTRO_INSTALL "install shared libs, headers and pkg‑config entries" ON)
+option(DISTRO_INSTALL "install shared libs, headers and pkg-config entries" ON)
 option(WITH_INIREADER "compile and (if selected) install INIReader" ON)
 
-option(MULTI_LINE_ENTRIES "support for multi‑line entries" ON)
-option(UTF8_BOM "allow a UTF‑8 BOM sequence at the start of INI files" ON)
+option(MULTI_LINE_ENTRIES "support for multi-line entries" ON)
+option(UTF8_BOM "allow a UTF-8 BOM sequence at the start of INI files" ON)
 option(INLINE_COMMENTS "allow inline comments with the comment prefix character" ON)
 set(INLINE_COMMENT_PREFIX ";" CACHE STRING "character(s) to start an inline comment")
 set(START_OF_LINE_COMMENT_PREFIX ";#" CACHE STRING "character(s) to start a comment at line start")
@@ -80,7 +80,7 @@ if(NOT DISTRO_INSTALL)
     endif()
 endif()
 
-# Windows‑specific handling (shared‑lib flag)
+# Windows-specific handling (shared-lib flag)
 if(WIN32)
     message(STATUS "Windows specific handling (shared-lib flag)")
     if(BUILD_SHARED_LIBS)
@@ -104,9 +104,9 @@ set_target_properties(inih PROPERTIES
         CXX_VISIBILITY_PRESET hidden
 )
 
-# ---------- 3.1. dependency‑target (interface) ----------
+# ---------- 3.1. dependency-target (interface) ----------
 add_library(inih_interface INTERFACE)               #
-add_library(inih::inih ALIAS inih_interface)        # alias‑target, for users
+add_library(inih::inih ALIAS inih_interface)        # alias-target, for users
 
 target_include_directories(inih_interface INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(inih_interface INTERFACE inih)   # link to real lib
@@ -124,7 +124,7 @@ if(DISTRO_INSTALL)
     )
     install(FILES ini.h DESTINATION include)
 
-    # ---- pkg‑config generation ----
+    # ---- pkg-config generation ----
     configure_file(pkg-config.in inih.pc @ONLY)
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/inih.pc DESTINATION lib/pkgconfig)
 endif()
@@ -159,7 +159,7 @@ if(WITH_INIREADER)
             CXX_VISIBILITY_PRESET hidden
     )
 
-    # ---- alias‑target ----
+    # ---- alias-target ----
     add_library(INIReader_interface INTERFACE)
     add_library(inih::INIReader ALIAS INIReader_interface)
 

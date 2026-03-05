@@ -58,7 +58,7 @@ function(add_inih_test test_name src_file extra_defines)
 
     # 4.3. Adding test to CTest, by call of runtest.sh
     #     There are two arguments (from meson-file):
-    #       1) baseline‑file
+    #       1) baseline-file
     #       2) executable path
     add_test(NAME test_${test_name}
             COMMAND ${RUNTEST_EXE}
@@ -81,7 +81,7 @@ foreach(i RANGE 0 ${n_tests-1})
     list(GET TEST_DEFINES ${idx_source} cur_src)
     list(GET TEST_DEFINES ${idx_defines} cur_defs)
 
-    # If there is no source‑file – get default `unittest.c`
+    # If there is no source-file - get default `unittest.c`
     if (cur_src STREQUAL "")
         set(cur_src "unittest.c")
     endif()
