@@ -110,8 +110,8 @@ public:
     INI_API bool HasValue(const std::string& section, const std::string& name) const;
 
 protected:
-    int _error;
     std::map<std::string, std::string> _values;
+    int _error;
     static std::string MakeKey(const std::string& section, const std::string& name);
     static int ValueHandler(void* user, const char* section, const char* name,
                             const char* value);
